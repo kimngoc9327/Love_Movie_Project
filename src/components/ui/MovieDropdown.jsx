@@ -1,3 +1,95 @@
+// import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+// import { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   getGenreMovie,
+//   getMovieDiscover,
+// } from "../../redux/actions/movieActions";
+// import { useNavigate } from "react-router-dom";
+
+// function MovieDropdown() {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const genres = useSelector((state) => state.movieReducer.genres);
+
+//   useEffect(() => {
+//     dispatch(getGenreMovie());
+//   }, [dispatch]);
+
+//   const handleGenreSelect = (genreId) => {
+//     dispatch(getMovieDiscover(genreId));
+//     navigate(`/genre?genre=${genreId}`);
+//     setIsOpen(false);
+//   };
+
+//   return (
+//     <>
+//       <div
+//         className="relative mb-13px max-md:hidden"
+//         onMouseUp={() => setIsOpen(true)}
+//         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+//       >
+//         <Menu>
+//           <MenuButton className="flex items-center justify-between hover:text-red-500 text-base cursor-pointer max-lg:w-full">
+//             <p>Movies</p>
+//             <i
+//               className={`text-3xl pt-1 ${
+//                 isDropdownOpen ? "ri-arrow-up-s-fill" : "ri-arrow-down-s-fill"
+//               }`}
+//             ></i>
+//           </MenuButton>
+
+//           {isOpen && (
+//             <MenuItems className="grid grid-cols-3 gap-4 absolute left-0 mt-2 w-150 p-2 origin-top-right rounded-md bg-black ring-1 z-40 focus:outline-none max-lg:grid-cols-2 max-lg:w-76 max-lg:gap-1 max-lg:py-0">
+//               {genres?.genres?.map((genre, index) => (
+//                 <MenuItem
+//                   id={genre.id}
+//                   key={index}
+//                   as="div"
+//                   className="px-4 py-2 text-white hover:bg-gray-700 cursor-pointer"
+//                   onClick={() => handleGenreSelect(genre.id)}
+//                 >
+//                   {genre.name}
+//                 </MenuItem>
+//               ))}
+//             </MenuItems>
+//           )}
+//         </Menu>
+//       </div>
+//       <div
+//         onMouseUp={() => setIsOpen(true)}
+//         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+//         className="md:hidden "
+//       >
+//         <div className="flex items-center px-6 justify-between hover:text-red-500 text-base cursor-pointer max-lg:w-full">
+//           <p>Movies</p>
+//           <i
+//             className={`text-3xl pt-1 ${
+//               isDropdownOpen ? "ri-arrow-up-s-fill" : "ri-arrow-down-s-fill"
+//             }`}
+//           ></i>
+//         </div>
+//         {isOpen && (
+//           <div className="bg-[#141519] px-0">
+//             {genres?.genres?.map((genre, index) => (
+//               <p
+//                 key={index}
+//                 className="px-6 py-2 text-white hover:bg-gray-700 cursor-pointer"
+//                 onClick={() => handleGenreSelect(genre.id)}
+//               >
+//                 {genre.name}
+//               </p>
+//             ))}
+//           </div>
+//         )}
+//       </div>
+//     </>
+//   );
+// }
+// export default MovieDropdown;
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +101,6 @@ import { useNavigate } from "react-router-dom";
 
 function MovieDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,39 +116,74 @@ function MovieDropdown() {
     setIsOpen(false);
   };
 
+  // 🔹 Toggle dropdown khi click vào "Movies"
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
-    <div
-      className="relative mb-13px"
-      onMouseUp={() => setIsOpen(true)}
-      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-    >
-      <Menu>
-        <MenuButton className="flex items-center justify-between hover:text-red-500 text-base cursor-pointer max-lg:w-full">
+    <>
+      {/* Desktop */}
+      <div className="relative mb-13px max-md:hidden">
+        <Menu>
+          <MenuButton
+            className="flex items-center justify-between hover:text-red-500 text-base cursor-pointer max-lg:w-full"
+            onClick={toggleDropdown} // 🟢 Thay đổi cách mở/đóng dropdown
+          >
+            <p>Movies</p>
+            <i
+              className={`text-3xl pt-1 ${
+                isOpen ? "ri-arrow-up-s-fill" : "ri-arrow-down-s-fill"
+              }`}
+            ></i>
+          </MenuButton>
+
+          {isOpen && (
+            <MenuItems className="grid grid-cols-3 gap-4 absolute left-0 mt-2 w-150 p-2 origin-top-right rounded-md bg-black ring-1 z-40 focus:outline-none max-lg:grid-cols-2 max-lg:w-76 max-lg:gap-1 max-lg:py-0">
+              {genres?.genres?.map((genre, index) => (
+                <MenuItem
+                  key={index}
+                  as="div"
+                  className="px-4 py-2 text-white hover:bg-gray-700 cursor-pointer"
+                  onClick={() => handleGenreSelect(genre.id)}
+                >
+                  {genre.name}
+                </MenuItem>
+              ))}
+            </MenuItems>
+          )}
+        </Menu>
+      </div>
+
+      {/* Mobile */}
+      <div className="md:hidden">
+        <div
+          className="flex items-center px-6 justify-between hover:text-red-500 text-base cursor-pointer max-lg:w-full"
+          onClick={toggleDropdown} // 🟢 Cũng thay đổi cách mở/đóng dropdown trên mobile
+        >
           <p>Movies</p>
           <i
             className={`text-3xl pt-1 ${
-              isDropdownOpen ? "ri-arrow-up-s-fill" : "ri-arrow-down-s-fill"
+              isOpen ? "ri-arrow-up-s-fill" : "ri-arrow-down-s-fill"
             }`}
           ></i>
-        </MenuButton>
+        </div>
 
         {isOpen && (
-          <MenuItems className="grid grid-cols-3 gap-4 absolute left-0 mt-2 w-150 p-2 origin-top-right rounded-md bg-black ring-1 z-40 focus:outline-none max-lg:grid-cols-2 max-lg:w-76 max-lg:gap-1 max-lg:py-0">
+          <div className="bg-[#141519] px-0 overflow-y-auto">
             {genres?.genres?.map((genre, index) => (
-              <MenuItem
-                id={genre.id}
+              <p
                 key={index}
-                as="div"
-                className="px-4 py-2 text-white hover:bg-gray-700 cursor-pointer"
+                className="px-6 py-2 text-white hover:bg-gray-700 cursor-pointer"
                 onClick={() => handleGenreSelect(genre.id)}
               >
                 {genre.name}
-              </MenuItem>
+              </p>
             ))}
-          </MenuItems>
+          </div>
         )}
-      </Menu>
-    </div>
+      </div>
+    </>
   );
 }
 
