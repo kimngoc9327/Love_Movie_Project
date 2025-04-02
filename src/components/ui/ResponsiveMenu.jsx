@@ -32,16 +32,16 @@ function ResponsiveMenu({ open, onClose }) {
       >
         <div
           ref={menuRef}
-          className="absolute left-0 flex flex-col w-40 h-screen pb-4  pt-0 space-y-4 bg-black text-white"
+          className="absolute left-0 flex flex-col w-44 h-screen pb-4  pt-0 space-y-4 bg-black text-white"
         >
           <Link to="/">
-            <p className="hover:text-red-500 text-base px-6">Home</p>
+            <p className="hover:text-red-500 text-base px-4">Home</p>
           </Link>
 
           <MovieDropdown />
 
           {/* TV Show */}
-          <div className="relative group px-6 hover:text-red-500 cursor-pointer">
+          <div className="relative group px-4 mb-6 hover:text-red-500 cursor-pointer">
             <p>TV Show</p>
             <span className="absolute top-full left-1/2 transform -translate-x-1/2 mb-2 w-max bg-[#202533] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
               Coming soon
@@ -49,7 +49,7 @@ function ResponsiveMenu({ open, onClose }) {
           </div>
 
           {/* People */}
-          <div className="relative group px-6 hover:text-red-500 hover:cursor-pointer">
+          <div className="relative group px-4 hover:text-red-500 hover:cursor-pointer">
             <p>People</p>
             <span className="absolute top-full left-1/2 transform -translate-x-1/2 mb-2 w-max bg-[#202533] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
               Coming soon

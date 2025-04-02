@@ -44,7 +44,10 @@ const Header = () => {
           <i className="ri-search-line text-white"></i>
         </div>
       </div>
-      <SearchInput open={isOpenSearchInput} />
+      <SearchInput
+        open={isOpenSearchInput}
+        onClose={() => setIsOpenSearchInput(false)}
+      />
       <ResponsiveMenu open={isOpenMenu} onClose={() => setIsOpenMenu(false)} />
     </div>
   );

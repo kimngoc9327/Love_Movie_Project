@@ -4,13 +4,14 @@ import { AUTH_TOKEN, BASE_URL, POSTER_PATH } from "../../constants/constants";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function SearchInput({ open }) {
+function SearchInput({ open, onClose }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
   const resultsRef = useRef(null);
   const [suggestions, setSuggestions] = useState([]); // Thêm state cục bộ để lưu kết quả gợi ý
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
     if (query.trim() === "") {
@@ -58,9 +59,29 @@ function SearchInput({ open }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target)
+      ) {
+        onClose();
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open, onClose]);
+
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search?query=${query}`);
+    onClose();
   };
 
   const handleSelectMovie = (id) => {
@@ -76,14 +97,16 @@ function SearchInput({ open }) {
         className="ml-auto mr-8 flex items-center space-x-3 relative max-md:absolute max-md:top-10 max-md:left-0 max-md:w-screen"
       >
         <input
+          placeholder="Search"
           className="h-[36px] w-90 text-black pl-[10px] bg-white rounded-md max-lg:max-w-40 max-md:mr-0 max-md:hidden"
           value={query || ""}
           onChange={(e) => setQuery(e.target.value)}
         />
         {open && (
           <input
+            ref={searchInputRef}
             placeholder="Search"
-            className="md:hidden h-[36px] text-white pl-8 bg-[#141519] border-b border-b-red-500 focus:outline-none w-screen mr-0"
+            className="md:hidden h-[36px] text-white pl-8 bg-[#141519] border-b border-b-red-500 focus:outline-none w-screen mr-0 "
             value={query || ""}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -121,7 +144,8 @@ function SearchInput({ open }) {
 }
 
 SearchInput.propTypes = {
-  open: PropTypes.any,
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
 };
 
 export default SearchInput;
