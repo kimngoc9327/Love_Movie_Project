@@ -35,7 +35,7 @@ const Header = () => {
             </span>
           </div>
         </div>
-        <div className="md:hidden mr-6">
+        <div className="md:hidden mr-8">
           <i className="ri-search-line text-white"></i>
         </div>
       </div>

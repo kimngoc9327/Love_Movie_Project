@@ -26,7 +26,7 @@ function Banner() {
         <div className="space-y-4">
           <p
             className="p-2  w-[80px] rounded-[2px] text-sm text-center text-white font-medium
-                 bg-gradient-to-r from-red-500  to-red-400 max-lg:ml-6
+                 bg-gradient-to-r from-red-500  to-red-400 max-lg:ml-10
                  "
           >
             Movie
@@ -47,16 +47,16 @@ function Banner() {
             Xiao Bai, what must Xiao Qing do?
           </p>
 
-          <div className="flex space-x-8 text-white max-lg:ml-6 max-lg:text-sm">
+          <div className="flex space-x-8 text-white">
             <button
               onClick={() => handleSelect(id)}
-              className="font-bold p-2 pl-3 pr-3 rounded-[4px] bg-black cursor-pointer "
+              className="font-bold p-2 pl-3 pr-3 rounded-[4px] bg-black hover:cursor-pointer "
             >
               Details
             </button>
             <button
               onClick={() => handleSelect(id)}
-              className="font-bold p-2 pl-3 pr-3 rounded-[4px] bg-red-500 cursor-pointer"
+              className="font-bold p-2 pl-3 pr-3 rounded-[4px] bg-red-500 hover:cursor-pointer"
             >
               Watch Movie
             </button>

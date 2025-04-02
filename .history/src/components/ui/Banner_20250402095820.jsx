@@ -47,7 +47,7 @@ function Banner() {
             Xiao Bai, what must Xiao Qing do?
           </p>
 
-          <div className="flex space-x-8 text-white max-lg:ml-6 max-lg:text-sm">
+          <div className="flex space-x-8 text-white max-lg:ml-6 max-lg:text-lg">
             <button
               onClick={() => handleSelect(id)}
               className="font-bold p-2 pl-3 pr-3 rounded-[4px] bg-black cursor-pointer "
