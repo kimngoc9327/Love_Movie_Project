@@ -37,7 +37,7 @@ function MovieList({ category, sectionTitle, params = {} }) {
     <div className="m-6 max-lg:m-0">
       <div className="flex justify-between mt-10 mb-6 text-white max-lg:my-3">
         <div className="relative h-[35px] ">
-          <p className=" border-b border-b-red-500 h-full pt-1 font-medium">
+          <p className="max-lg:text-xl text-2xl border-b border-b-red-500 h-full pt-1 font-medium">
             {sectionTitle}
           </p>
         </div>

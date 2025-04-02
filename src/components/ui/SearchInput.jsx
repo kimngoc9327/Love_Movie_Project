@@ -2,15 +2,14 @@ import { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AUTH_TOKEN, BASE_URL, POSTER_PATH } from "../../constants/constants";
 import axios from "axios";
+import PropTypes from "prop-types";
 
-function SearchInput() {
+function SearchInput({ open }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
-
   const resultsRef = useRef(null);
-
   const [suggestions, setSuggestions] = useState([]); // Thêm state cục bộ để lưu kết quả gợi ý
 
   useEffect(() => {
@@ -74,17 +73,24 @@ function SearchInput() {
     <>
       <form
         onSubmit={handleSearch}
-        className="ml-auto mr-8 flex items-center space-x-3 relative max-md:hidden "
+        className="ml-auto mr-8 flex items-center space-x-3 relative max-md:absolute max-md:top-10 max-md:left-0 max-md:w-screen"
       >
         <input
-          className="h-[36px] w-90 text-black pl-[10px] bg-white rounded-md max-lg:max-w-40"
-          placeholder="Search"
+          className="h-[36px] w-90 text-black pl-[10px] bg-white rounded-md max-lg:max-w-40 max-md:mr-0 max-md:hidden"
           value={query || ""}
           onChange={(e) => setQuery(e.target.value)}
         />
+        {open && (
+          <input
+            placeholder="Search"
+            className="md:hidden h-[36px] text-white pl-8 bg-[#141519] border-b border-b-red-500 focus:outline-none w-screen mr-0"
+            value={query || ""}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        )}
         <button
           type="submit"
-          className="bg-red-500 px-[7px] h-[36px] text-center rounded-md"
+          className="bg-red-500 px-[7px] h-[36px] text-center rounded-md max-md:hidden"
         >
           Search
         </button>
@@ -92,7 +98,7 @@ function SearchInput() {
         {showResults && suggestions?.results?.length > 0 && (
           <div
             ref={resultsRef}
-            className="absolute w-90 top-10 bg-black text-white mt-2 rounded-md shadow-lg p-2"
+            className="absolute w-90 top-10 bg-black text-white mt-2 shadow-lg p-2 max-md:top-7"
           >
             {suggestions?.results?.slice(0, 8).map((movie, index) => (
               <div
@@ -113,5 +119,9 @@ function SearchInput() {
     </>
   );
 }
+
+SearchInput.propTypes = {
+  open: PropTypes.any,
+};
 
 export default SearchInput;

@@ -5,11 +5,13 @@ import { useState } from "react";
 import ResponsiveMenu from "../ui/ResponsiveMenu";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenSearchInput, setIsOpenSearchInput] = useState(false);
+
   return (
     <div className="flex fixed z-50 w-screen top-0 left-0 right-0 items-center text-white p-6 h-16 bg-black max-lg:justify-between max-lg:pl-0 max-lg:p-3 max-lg:h-12">
       <div className="flex space-x-8  items-center ml-8 max-lg:justify-between max-lg:w-full">
-        <div onClick={() => setIsOpen(true)} className="md:hidden">
+        <div onClick={() => setIsOpenMenu(true)} className="md:hidden">
           <i className="ri-menu-line"></i>
         </div>
         <Link to="/">
@@ -35,12 +37,15 @@ const Header = () => {
             </span>
           </div>
         </div>
-        <div className="md:hidden mr-6">
+        <div
+          onClick={() => setIsOpenSearchInput(true)}
+          className="md:hidden mr-6"
+        >
           <i className="ri-search-line text-white"></i>
         </div>
       </div>
-      <SearchInput />
-      <ResponsiveMenu open={isOpen} />
+      <SearchInput open={isOpenSearchInput} />
+      <ResponsiveMenu open={isOpenMenu} onClose={() => setIsOpenMenu(false)} />
     </div>
   );
 };

@@ -31,7 +31,7 @@ function Banner() {
           >
             Movie
           </p>
-          <p className="w-[340px] text-white text-justify font-medium max-lg:line-clamp-8">
+          <p className="w-[600px] text-white text-justify font-medium max-lg:line-clamp-8 max-lg:w-[340px]">
             White Snake 2: The Tribulation of Green Snake continues the
             storyline of the first part. The serpent spirit Xiao Bai has been
             imprisoned in Leifeng Pagoda by the monk Fa Hai. In an attempt to
