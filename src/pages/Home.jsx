@@ -4,7 +4,7 @@ function Home() {
   return (
     <div>
       <Banner />
-      <div className="mx-20 max-lg:mx-3">
+      <div className="mx-20 max-lg:mx-3 ">
         <MovieList
           category={"now_playing"}
           sectionTitle={"Now Playing"}

@@ -45,7 +45,7 @@ function MovieGenre() {
       <Notice />
       <div className="flex flex-col items-center  mt-5">
         <MovieFilterBar />
-        <div className="grid grid-cols-4 gap-6 my-12 max-lg:my-6  max-sm:grid-cols-2 max-md:grid-cols-3">
+        <div className="grid grid-cols-4 gap-6 my-12 max-lg:my-6 max-sm:grid-cols-2 max-md:grid-cols-3">
           {movies?.results
             ?.filter((movie) => movie.title && movie.poster_path)
             .map((movie) => (

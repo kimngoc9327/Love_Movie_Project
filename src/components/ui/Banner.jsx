@@ -20,7 +20,7 @@ function Banner() {
     <div className="relative w-screen h-screen">
       <img
         src={BachXa}
-        className="absolute w-full h-screen object-cover opacity-50"
+        className="absolute w-full h-full object-cover opacity-50"
       />
       <div className="absolute w-full flex items-center justify-around mt-[137px] ">
         <div className="space-y-4">

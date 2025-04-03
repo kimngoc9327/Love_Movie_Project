@@ -39,11 +39,11 @@ function SearchMovie() {
   };
 
   return (
-    <div className="m-20">
+    <div className="m-20 max-lg:m-5 max-lg:mt-15">
       <Notice />
       <div className="flex flex-col items-center mt-5 ">
         <MovieFilterBar />
-        <div className="grid grid-cols-4 gap-8  my-12">
+        <div className="grid grid-cols-4 gap-6  my-12 max-lg:my-6 max-sm:grid-cols-2 max-md:grid-cols-3">
           {movies?.results
             ?.filter((movie) => movie.title && movie.poster_path)
             .map((movie) => (

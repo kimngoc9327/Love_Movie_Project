@@ -98,30 +98,29 @@ function MovieFilterBar() {
     navigate(`?${params.toString()}`);
   };
   return (
-    <form className="flex space-x-8 justify-center text-white w-full">
-      <div className="flex space-x-3 items-center">
+    <form className="flex space-x-8 justify-center text-white w-full max-lg:grid max-lg:grid-cols-2 max-lg:gap-4">
+      <div className="flex space-x-3 items-center max-lg:flex-col max-lg:items-start max-lg:w-full">
         <label>Genre:</label>
         <select
           onChange={(e) => setSelectedGenre(e.target.value)}
-          className="border bg-gray-700 border-gray-300 rounded-md p-2"
+          className="border bg-gray-700 border-gray-300 rounded-md p-2 max-lg:p-0.5 max-lg:w-full"
         >
           <option className="bg-black" value="">
             All
           </option>
           {genres?.genres?.map((genre, index) => (
             <option className="bg-black" key={index} value={genre.id}>
-              {" "}
-              {genre.name}{" "}
+              {genre.name}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="flex space-x-3 items-center">
+      <div className="flex space-x-3 items-center max-lg:flex-col max-lg:items-start max-lg:w-full">
         <label>Country:</label>
         <select
           onChange={(e) => setSelectedCountry(e.target.value)}
-          className="border bg-gray-700 border-gray-300 rounded-md p-2"
+          className="border bg-gray-700 border-gray-300 rounded-md p-2 max-lg:p-0.5 max-lg:w-full"
         >
           <option className="bg-black" value="">
             All
@@ -134,11 +133,11 @@ function MovieFilterBar() {
         </select>
       </div>
 
-      <div className="flex space-x-3 items-center">
+      <div className="flex space-x-3 items-center max-lg:flex-col max-lg:items-start max-lg:w-full">
         <label htmlFor="">Year:</label>
         <select
           onChange={(e) => setSelectedYear(e.target.value)}
-          className="border bg-gray-700 border-gray-300 rounded-md p-2"
+          className="border bg-gray-700 border-gray-300 rounded-md p-2 max-lg:p-0.5 max-lg:w-full"
         >
           <option className="bg-black" value="All">
             All
@@ -151,11 +150,11 @@ function MovieFilterBar() {
         </select>
       </div>
 
-      <div className="flex space-x-3 items-center">
+      <div className="flex space-x-3 items-center max-lg:flex-col max-lg:items-start max-lg:w-full">
         <label>Sort by:</label>
         <select
           onChange={(e) => setSelectedSortBy(e.target.value)}
-          className="border bg-gray-700 border-gray-300 rounded-md p-2"
+          className="border bg-gray-700 border-gray-300 rounded-md p-2 max-lg:p-0.5 max-lg:w-full"
         >
           <option className="bg-black" value="All">
             All
@@ -170,7 +169,7 @@ function MovieFilterBar() {
 
       <div
         onClick={handleFilter}
-        className="flex space-x-1.5 items-center justify-center !px-3 bg-red-500 w-20 rounded-lg hover:cursor-pointer"
+        className="flex space-x-1.5 items-center justify-center !px-3 bg-red-500 w-20 rounded-lg hover:cursor-pointer max-lg:mt-2"
       >
         <p>Filter</p> <i className="ri-filter-2-fill"></i>
       </div>
