@@ -7,22 +7,18 @@ function Banner() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = "795607-ii";
-  // const currentMovie = useSelector((state) => state.movieReducer.currentMovie);
-  // useEffect(() => {
-  //   dispatch(getMovie(id));
-  // }, [dispatch]);
 
   const handleSelect = (id) => {
     dispatch(getMovie(id));
     navigate(`/movie?id=${id}`);
   };
   return (
-    <div className="relative w-screen h-screen">
-      <img
-        src={BachXa}
-        className="absolute w-full h-full object-cover opacity-50"
-      />
-      <div className="absolute w-full flex items-center justify-around mt-[137px] ">
+    <div
+      className="relative w-screen h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url(${BachXa})` }}
+    >
+      <div className="absolute inset-0 bg-black opacity-50 h-full"></div>
+      <div className="absolute z-10 w-full flex items-center justify-around mt-[137px] max-lg:h-[60%]">
         <div className="space-y-4">
           <p
             className="p-2  w-[80px] rounded-[2px] text-sm text-center text-white font-medium
@@ -31,7 +27,7 @@ function Banner() {
           >
             Movie
           </p>
-          <p className="w-[600px] text-white text-justify font-medium max-lg:line-clamp-8 max-lg:w-[340px]">
+          <p className="w-[600px] text-white text-justify font-medium max-lg:line-clamp-8 max-md:w-[340px]">
             White Snake 2: The Tribulation of Green Snake continues the
             storyline of the first part. The serpent spirit Xiao Bai has been
             imprisoned in Leifeng Pagoda by the monk Fa Hai. In an attempt to

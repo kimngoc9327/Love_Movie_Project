@@ -8,7 +8,7 @@ import PaginationButton from "../components/ui/PaginationButton";
 import MovieFilterBar from "../components/ui/MovieFilterBar";
 import Notice from "../components/ui/Notice";
 
-function MovieGenre() {
+function MovieFilter() {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -69,4 +69,4 @@ function MovieGenre() {
   );
 }
 
-export default MovieGenre;
+export default MovieFilter;

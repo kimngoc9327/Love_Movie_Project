@@ -18,8 +18,35 @@ function CastList({ movie }) {
             spaceBetween={1}
             slidesPerView={6}
             navigation
+            breakpoints={{
+              320: {
+                // Mobile
+                slidesPerView: 2,
+                spaceBetween: 2,
+              },
+              480: {
+                // Small tablets
+                slidesPerView: 4,
+                spaceBetween: 1,
+              },
+              768: {
+                // Tablets
+                slidesPerView: 4,
+                spaceBetween: 1,
+              },
+              1024: {
+                // Desktops
+                slidesPerView: 4,
+                spaceBetween: 2,
+              },
+              1280: {
+                // Larger screens
+                slidesPerView: 5,
+                spaceBetween: 2,
+              },
+            }}
             modules={[Navigation]}
-            className="w-260 !mx-0"
+            className="w-260 !mx-0 max-lg:w-full"
           >
             {movie?.casts?.cast?.map((cast, index) => (
               <SwiperSlide key={index}>

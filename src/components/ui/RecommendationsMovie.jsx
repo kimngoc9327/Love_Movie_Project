@@ -24,6 +24,33 @@ function RecommendationsMovie({ recommendations }) {
             spaceBetween={1}
             slidesPerView={6}
             navigation
+            breakpoints={{
+              320: {
+                // Mobile
+                slidesPerView: 2,
+                spaceBetween: 2,
+              },
+              480: {
+                // Small tablets
+                slidesPerView: 3,
+                spaceBetween: 2,
+              },
+              768: {
+                // Tablets
+                slidesPerView: 4,
+                spaceBetween: 2,
+              },
+              1024: {
+                // Desktops
+                slidesPerView: 4,
+                spaceBetween: 2,
+              },
+              1280: {
+                // Larger screens
+                slidesPerView: 5,
+                spaceBetween: 2,
+              },
+            }}
             modules={[Navigation]}
             className=" !mx-0"
           >

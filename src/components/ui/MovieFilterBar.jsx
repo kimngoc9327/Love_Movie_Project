@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGenreMovie } from "../../redux/actions/movieActions";
+import {
+  getGenreMovie,
+  getMovieDiscover,
+} from "../../redux/actions/movieActions";
 import { useNavigate } from "react-router-dom";
 
 function MovieFilterBar() {
@@ -78,7 +81,11 @@ function MovieFilterBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const genres = useSelector((state) => state.movieReducer.genres);
-  const [selectedGenre, setSelectedGenre] = useState("");
+
+  const queryParams = new URLSearchParams(location.search);
+  const genreFromURL = queryParams.get("with_genres");
+
+  const [selectedGenre, setSelectedGenre] = useState(genreFromURL || "All");
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedSortBy, setSelectedSortBy] = useState("");
@@ -86,6 +93,17 @@ function MovieFilterBar() {
   useEffect(() => {
     dispatch(getGenreMovie());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedGenre && selectedGenre !== "") {
+      dispatch(getMovieDiscover(selectedGenre));
+    }
+  }, [dispatch, selectedGenre]);
+
+  const handleGenreChange = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedGenre(selectedValue);
+  };
 
   const handleFilter = () => {
     const params = new URLSearchParams();
@@ -102,14 +120,19 @@ function MovieFilterBar() {
       <div className="flex space-x-3 items-center max-lg:flex-col max-lg:items-start max-lg:w-full">
         <label>Genre:</label>
         <select
-          onChange={(e) => setSelectedGenre(e.target.value)}
+          value={selectedGenre}
+          onChange={handleGenreChange}
           className="border bg-gray-700 border-gray-300 rounded-md p-2 max-lg:p-0.5 max-lg:w-full"
         >
           <option className="bg-black" value="">
             All
           </option>
           {genres?.genres?.map((genre, index) => (
-            <option className="bg-black" key={index} value={genre.id}>
+            <option
+              className="bg-black"
+              key={index}
+              value={genreFromURL || genre.id}
+            >
               {genre.name}
             </option>
           ))}

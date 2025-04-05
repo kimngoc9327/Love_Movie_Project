@@ -5,22 +5,27 @@ import {
   getGenreMovie,
   getMovieDiscover,
 } from "../../redux/actions/movieActions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function MovieDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const genres = useSelector((state) => state.movieReducer.genres);
 
   useEffect(() => {
     dispatch(getGenreMovie());
   }, [dispatch]);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
   const handleGenreSelect = (genreId) => {
     dispatch(getMovieDiscover(genreId));
-    navigate(`/genre?genre=${genreId}`);
+    navigate(`/filter?with_genres=${genreId}`);
     setIsOpen(false);
   };
 

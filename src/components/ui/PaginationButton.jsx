@@ -27,7 +27,7 @@ const PaginationButton = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <div className="flex items-center space-x-2 rounded-md px-4 py-2">
       <button
-        className={`px-3 py-2 bg-white text-gray-500 hover:cursor-pointer ${
+        className={`px-3 py-2 bg-white text-gray-500 cursor-pointer max-lg:px-2 max-lg:py-0.5 ${
           currentPage === 1
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-gray-200"
@@ -40,13 +40,16 @@ const PaginationButton = ({ currentPage, totalPages, onPageChange }) => {
 
       {getPageNumbers().map((page, index) =>
         page === "..." ? (
-          <span key={index} className="px-3 py-2 text-gray-500 ">
+          <span
+            key={index}
+            className="px-3 py-2 text-gray-500 max-lg:px-2 max-lg:py-0.5"
+          >
             ...
           </span>
         ) : (
           <button
             key={index}
-            className={`px-3 py-2 bg-white rounded-md hover:cursor-pointer ${
+            className={`px-3 py-2  bg-white rounded-md cursor-pointer max-lg:px-2 max-lg:py-0.5 ${
               currentPage === page
                 ? "!bg-indigo-600 text-white"
                 : "hover:bg-gray-200"
@@ -59,7 +62,7 @@ const PaginationButton = ({ currentPage, totalPages, onPageChange }) => {
       )}
 
       <button
-        className={`px-3 py-2 bg-white text-gray-500 hover:cursor-pointer ${
+        className={`px-3 py-2 bg-white text-gray-500 cursor-pointer max-lg:px-2 max-lg:py-0.5 ${
           currentPage === totalPages
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-gray-200"

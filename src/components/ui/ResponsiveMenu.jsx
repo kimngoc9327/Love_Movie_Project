@@ -24,7 +24,6 @@ function ResponsiveMenu({ open, onClose }) {
 
   return (
     <>
-      {/* {open && ( */}
       <div
         className={`fixed top-12 w-screen h-screen bg-gray-700/70 left-0 right-0 transform transition-transform duration-200 ${
           open ? "translate-x-0" : "-translate-x-full"
@@ -57,7 +56,6 @@ function ResponsiveMenu({ open, onClose }) {
           </div>
         </div>
       </div>
-      {/* )} */}
     </>
   );
 }

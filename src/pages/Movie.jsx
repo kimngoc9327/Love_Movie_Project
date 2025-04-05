@@ -51,7 +51,7 @@ function Movie() {
     <div className="mt-20">
       <Notice />
       <MovieDetails movie={movie} />
-      <div className="mx-20">
+      <div className="mx-20 mt-10 max-lg:mx-5">
         <CastList movie={movie} />
         <MovieCollectionList collection={collection} />
         <RecommendationsMovie recommendations={recommendation} />
