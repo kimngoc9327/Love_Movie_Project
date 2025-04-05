@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Fragment } from "react";
 
+// CastList component displays a carousel of top-billed cast members.
 function CastList({ movie }) {
   return (
     <>
@@ -14,6 +15,7 @@ function CastList({ movie }) {
           <p className="text-white text-3xl font-medium  mb-6">
             Top Billed Cast
           </p>
+          {/* Swiper carousel for movie casts */}
           <Swiper
             spaceBetween={1}
             slidesPerView={6}

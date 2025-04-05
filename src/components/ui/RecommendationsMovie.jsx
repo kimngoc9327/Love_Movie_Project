@@ -16,7 +16,7 @@ function RecommendationsMovie({ recommendations }) {
   return (
     <>
       {recommendations ? (
-        <div className="my-10">
+        <div className="my-10 max-lg:my-3">
           <p className="text-white text-3xl font-medium mb-6">
             Recommendations
           </p>

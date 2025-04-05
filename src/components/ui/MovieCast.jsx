@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { DEFAULT_IMAGE, POSTER_PATH } from "../../constants/constants";
 
+// Component that displays a movie cast's profile picture and name
 function MovieCast({ cast }) {
   return (
     <div className="flex flex-col items-center">

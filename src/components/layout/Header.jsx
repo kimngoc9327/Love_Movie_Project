@@ -4,6 +4,7 @@ import SearchInput from "../ui/SearchInput";
 import { useState } from "react";
 import ResponsiveMenu from "../ui/ResponsiveMenu";
 
+// Header component displays a navigation bar with links, search input, and dropdown menu.
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenSearchInput, setIsOpenSearchInput] = useState(false);

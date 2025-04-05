@@ -1,3 +1,4 @@
+// Footer component displays a footer section with a title and social media icons.
 function Footer() {
   return (
     <div className="flex space-x-10 mt-12 py-4 px-10 items-center justify-between text-white bg-black max-lg:py-2">

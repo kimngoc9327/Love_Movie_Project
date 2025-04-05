@@ -8,8 +8,11 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Fragment } from "react";
 
+// Component that displays a list of movie collections in a swiper (carousel)
 function MovieCollectionList({ collection }) {
   const navigate = useNavigate();
+
+  // Navigate to the selected movie's details page
   const handleSelectMovie = (id) => {
     navigate(`/movie?id=${id}`);
   };
@@ -52,6 +55,7 @@ function MovieCollectionList({ collection }) {
             modules={[Navigation]}
             className=" !mx-0"
           >
+            {/* Render movie cards for each part of the collection */}
             {collection?.parts?.map((part, index) => (
               <SwiperSlide
                 key={index}

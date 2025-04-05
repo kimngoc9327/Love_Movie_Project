@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getGenreMovie,
-  getMovieDiscover,
-} from "../../redux/actions/movieActions";
+import { getGenreMovie } from "../../redux/actions/movieActions";
 import { useNavigate } from "react-router-dom";
 
 function MovieFilterBar() {
@@ -94,17 +91,6 @@ function MovieFilterBar() {
     dispatch(getGenreMovie());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (selectedGenre && selectedGenre !== "") {
-      dispatch(getMovieDiscover(selectedGenre));
-    }
-  }, [dispatch, selectedGenre]);
-
-  const handleGenreChange = (e) => {
-    const selectedValue = e.target.value;
-    setSelectedGenre(selectedValue);
-  };
-
   const handleFilter = () => {
     const params = new URLSearchParams();
 
@@ -120,8 +106,7 @@ function MovieFilterBar() {
       <div className="flex space-x-3 items-center max-lg:flex-col max-lg:items-start max-lg:w-full">
         <label>Genre:</label>
         <select
-          value={selectedGenre}
-          onChange={handleGenreChange}
+          onChange={(e) => setSelectedGenre(e.target.value)}
           className="border bg-gray-700 border-gray-300 rounded-md p-2 max-lg:p-0.5 max-lg:w-full"
         >
           <option className="bg-black" value="">
@@ -131,7 +116,7 @@ function MovieFilterBar() {
             <option
               className="bg-black"
               key={index}
-              value={genreFromURL || genre.id}
+              value={genre.id ? genre.id : genreFromURL}
             >
               {genre.name}
             </option>
